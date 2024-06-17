@@ -16,3 +16,12 @@ Absolutely no warranty, no support, no documentation, no time to even explain th
 I'm making this open source on the off chance that it's useful for someone else out there,
 but if you hit a snag, I'm afraid you're on your own.
 
+## Development
+
+Edit the `index.js` file.
+
+Run `npm start` in the root of the project to test the app out.
+
+## Build
+
+Run `npm run build` to build the app.
