@@ -1,0 +1,27 @@
+{
+  "name": "construct3-standalone",
+  "version": "1.0.0",
+  "description": "A standalone Contruct 3 site",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Filip Hracek",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "net.filiph.construct3",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "directories": {
+      "buildResources": "build"
+    }
+  }
+}
