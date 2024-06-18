@@ -18,7 +18,9 @@ but if you hit a snag, I'm afraid you're on your own.
 
 ## Development
 
-Edit the `index.js` file.
+To install dependencies, run `npm install`.
+
+Edit the `index.js` file to your liking.
 
 Run `npm start` in the root of the project to test the app out.
 
