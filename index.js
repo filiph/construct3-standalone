@@ -12,7 +12,7 @@ function createWindow() {
   });
 
   // Load the website
-  win.loadURL('https://editor.construct.net/');
+  win.loadURL('https://decko.ceskatelevize.cz/');
 
   // Open the DevTools (optional)
   // win.webContents.openDevTools();
@@ -24,7 +24,7 @@ function createWindow() {
 
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
     const { url } = details;
-    if (url.startsWith('https://editor.construct.net/')) {
+    if (url.startsWith('https://decko.ceskatelevize.cz/')) {
       callback({ cancel: false });
     } else {
       callback({ cancel: true });
@@ -33,13 +33,13 @@ function createWindow() {
 
   // Prevent navigation to other domains
   win.webContents.on('will-navigate', (event, url) => {
-    if (!url.startsWith('https://editor.construct.net/')) {
+    if (!url.startsWith('https://decko.ceskatelevize.cz/')) {
       event.preventDefault();
     }
   });
 
   win.webContents.on('new-window', (event, url) => {
-    if (!url.startsWith('https://editor.construct.net/')) {
+    if (!url.startsWith('https://decko.ceskatelevize.cz/')) {
       event.preventDefault();
     }
   });
