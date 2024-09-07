@@ -24,7 +24,8 @@ function createWindow() {
 
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
     const { url } = details;
-    if (url.startsWith('https://editor.construct.net/')) {
+    if (url.startsWith('https://editor.construct.net/') ||
+        url.startsWith('https://preview.construct.net/') ) {
       callback({ cancel: false });
     } else {
       callback({ cancel: true });
