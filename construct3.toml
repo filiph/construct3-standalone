@@ -2,7 +2,6 @@ name = "construct3-standalone"
 version = "1.1.0"
 description = "A standalone Construct 3 browser"
 author = "Filip Hracek"
-initialUrl = "https://editor.construct.net"
 
 [build]
 appId = "net.filiph.construct3"
@@ -12,6 +11,9 @@ icon = "build/icon.ico"
 
 [directories]
 buildResources = "build"
+
+[start]
+url = "https://editor.construct.net"
 
 [whitelist]
 # List of allowed URLs (as regular expressions) that the user can navigate to.

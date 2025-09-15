@@ -81,14 +81,14 @@ Future<void> updateIndexJs(
   // Set initial URL from TOML file (default to editor.construct.net if not specified)
   content = content.replaceAll(
     'INITIAL_URL_TO_BE_PLACED_HERE',
-    tomlData['initialUrl'] as String? ?? 'https://editor.construct.net',
+    tomlData['start']?['url'] as String? ?? 'https://editor.construct.net',
   );
 
   // Replace navigate allow list
   final navigateList =
       (tomlData['whitelist']?['navigate'] as List<dynamic>?) ?? [];
   final navigateRegexes = navigateList
-      .map((pattern) => "  /${pattern}/,")
+      .map((pattern) => "  /$pattern/,")
       .join('\n');
   content = content.replaceAll(
     '    // NAVIGATE_ALLOW_TO_BE_PLACED_HERE',
@@ -97,7 +97,7 @@ Future<void> updateIndexJs(
 
   // Replace embed allow list
   final embedList = (tomlData['whitelist']?['embed'] as List<dynamic>?) ?? [];
-  final embedRegexes = embedList.map((pattern) => "  /${pattern}/,").join('\n');
+  final embedRegexes = embedList.map((pattern) => "  /$pattern/,").join('\n');
   content = content.replaceAll(
     '    // EMBED_ALLOW_TO_BE_PLACED_HERE',
     embedRegexes,

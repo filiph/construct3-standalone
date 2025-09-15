@@ -24,7 +24,7 @@ but if you hit a snag, I'm afraid you're on your own.
 This project includes a Dart command-line tool that automates the process of creating an Electron app from a TOML configuration file.
 
 1. Make sure you have Dart installed.
-2. Create or modify a TOML configuration file (see `construct3.toml` for an example). The TOML file should include fields like `name`, `version`, `description`, `author`, and `initialUrl` to configure your app.
+2. Create or modify a TOML configuration file (see `construct3.toml` for an example). The TOML file should include fields like `name`, `version`, `description`, `author`, and a `[start]` section with a `url` field to configure your app.
 3. Run the tool:
 
 ```bash
@@ -58,7 +58,8 @@ The TOML configuration file should include the following fields:
 - `version`: The version of your app
 - `description`: A description of your app
 - `author`: The author of the app
-- `initialUrl`: The initial URL that will be loaded when the app starts
+- `[start]`: Start configuration section
+  - `url`: The initial URL that will be loaded when the app starts
 - `[build]`: Build configuration section
   - `appId`: The application ID
 - `[whitelist]`: URL whitelist configuration
