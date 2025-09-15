@@ -249,6 +249,13 @@ Future<void> main(List<String> arguments) async {
       }
 
       print('Successfully created electron project at: $outputPath');
+
+      // Print recommended next steps
+      print('\nRecommended next steps:');
+      print('  cd $outputPath');
+      print('  npm install');
+      print('  npm start    # To run the application');
+      print('  npm run build    # To build the application');
     } catch (e) {
       print('Error processing TOML file: $e');
       return;
