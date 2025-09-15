@@ -2,23 +2,39 @@ name = "construct3-standalone"
 version = "1.1.0"
 description = "A standalone Construct 3 browser"
 author = "Filip Hracek"
-build.appId = "net.filiph.construct3"
-build.win.icon = "build/icon.ico"
-directories.buildResources = "build"
 
-# List of allowed domain patterns as regular expressions
-allowed_regexes = [
-  'editor\.construct\.net',
-  'preview\.construct\.net',
-  'account\.construct\.net',
-  'downloads\.construct\.net',
-  'construct-static\.com',
-  'www\.construct\.net\/en\/make-games\/manuals',
-  'www\.construct\.net\/tutorials',
-  'www\.construct\.net\/en\/tutorials',
-  'googleapis\.com',
-  'ssl\.gstatic\.com',
-  'fonts\.gstatic\.com',
-  'googletagmanager\.com',
-  'play\.google\.com',
+[build]
+appId = "net.filiph.construct3"
+
+[build.win]
+icon = "build/icon.ico"
+
+[directories]
+buildResources = "build"
+
+[whitelist]
+# List of allowed URLs (as regular expressions) that the user can navigate to.
+# (They can change the page to such a URL or open a new window with it.)
+navigate = [
+    'editor\.construct\.net',
+    'preview\.construct\.net',
+    'account\.construct\.net',
+    'www\.construct\.net\/en\/make-games\/manuals',
+    'www\.construct\.net\/tutorials',
+    'www\.construct\.net\/en\/tutorials',
+]
+
+# List of URLs (as regular expressions) that the page can access.
+# You can change this list to contain '.*' if you want to allow any embed.
+# Note: This list is implicitly appended by the `navigate` list above
+# since it would take little sense to disallow fetching a page that is being
+# opened.
+embed = [
+    '.+\.construct\.net',
+    'construct-static\.com',
+    'googleapis\.com',
+    'ssl\.gstatic\.com',
+    'fonts\.gstatic\.com',
+    'googletagmanager\.com',
+    'play\.google\.com',
 ]
