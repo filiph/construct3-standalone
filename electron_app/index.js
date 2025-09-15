@@ -1,23 +1,11 @@
 const {app, BrowserWindow, session} = require('electron');
 
-const INITIAL_URL = 'https://editor.construct.net/';
+const INITIAL_URL = 'INITIAL_URL_TO_BE_PLACED_HERE';
 const NAVIGATE_ALLOW = [
-    /editor\.construct\.net/,
-    /preview\.construct\.net/,
-    /account\.construct\.net/,
-    /downloads\.construct\.net/,
-    /construct-static\.com/,
-    /www\.construct\.net\/en\/make-games\/manuals/,
-    /www\.construct\.net\/tutorials/,
-    /www\.construct\.net\/en\/tutorials/,
-    /googleapis\.com/,
-    /ssl\.gstatic\.com/,
-    /fonts\.gstatic\.com/,
-    /googletagmanager\.com/,
-    /play\.google\.com/,
+    // NAVIGATE_ALLOW_TO_BE_PLACED_HERE
 ];
 const EMBED_ALLOW = [
-    /.*/, // Allow any URL
+    // EMBED_ALLOW_TO_BE_PLACED_HERE
 ];
 
 //

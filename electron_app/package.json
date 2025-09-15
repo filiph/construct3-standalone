@@ -1,27 +1,27 @@
 {
-  "name": "construct3-standalone",
-  "version": "1.1.0",
-  "description": "A standalone Construct 3 browser",
+  "name": "name_to_be_placed_here",
+  "version": "version_to_be_placed_here",
+  "description": "description_to_be_placed_here",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
   },
   "keywords": [],
-  "author": "Filip Hracek",
+  "author": "author_to_be_placed_here",
   "license": "MIT",
   "devDependencies": {
     "electron": "^31.0.1",
     "electron-builder": "^24.13.3"
   },
   "build": {
-    "appId": "net.filiph.construct3",
+    "appId": "appid_to_be_placed_here",
     "win": {
       "target": "nsis",
-      "icon": "build/icon.ico"
+      "icon": "windows_icon_path_to_be_placed_here"
     },
     "directories": {
-      "buildResources": "build"
+      "buildResources": "directories_buildResources_to_be_placed_here"
     }
   }
 }
