@@ -1,0 +1,24 @@
+name = "construct3-standalone"
+version = "1.1.0"
+description = "A standalone Construct 3 browser"
+author = "Filip Hracek"
+build.appId = "net.filiph.construct3"
+build.win.icon = "build/icon.ico"
+directories.buildResources = "build"
+
+# List of allowed domain patterns as regular expressions
+allowed_regexes = [
+  "editor\\.construct\\.net",
+  "preview\\.construct\\.net",
+  "account\\.construct\\.net",
+  "downloads\\.construct\\.net",
+  "construct-static\\.com",
+  "www\\.construct\\.net\\/en\\/make-games\\/manuals",
+  "www\\.construct\\.net\\/tutorials",
+  "www\\.construct\\.net\\/en\\/tutorials",
+  "googleapis\\.com",
+  "ssl\\.gstatic\\.com",
+  "fonts\\.gstatic\\.com",
+  "googletagmanager\\.com",
+  "play\\.google\\.com",
+]
