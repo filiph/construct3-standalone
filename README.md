@@ -20,7 +20,10 @@ but if you hit a snag, I'm afraid you're on your own.
 
 To install dependencies, run `npm install`.
 
-Edit the `index.js` file to your liking.
+Edit:
+
+- Edit the `index.js` file to your liking.
+- Change `build/icon.ico` to your liking.
 
 Run `npm start` in the root of the project to test the app out.
 
