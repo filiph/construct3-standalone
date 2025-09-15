@@ -1,6 +1,6 @@
 const { app, BrowserWindow, session } = require('electron');
 
-const INITIAL_URL = 'https://www.umimematiku.cz/';
+const INITIAL_URL = 'https://editor.construct.net/';
 
 function isAllowedUrl(url) {
   try {
@@ -9,16 +9,16 @@ function isAllowedUrl(url) {
     
     // Define allowed domains as regular expressions
     const allowRegexes = [
-      /umimeto\.org/,
-      /umimecesky\.cz/,
-      /umimeanglicky\.cz/,
-      /umimenemecky\.cz/,
-      /umimematiku\.cz/,
-      /umimefakta\.cz/,
-      /umimeinformatiku\.cz/,
-      // Catch-all for future "umimeto" properties
-      /umime\w+\.cz/,
+      /editor\.construct\.net/,
+      /preview\.construct\.net/,
+      /account\.construct\.net/,
+      /downloads\.construct\.net/,
+      /construct-static\.com/,
+      /www\.construct\.net\/en\/make-games\/manuals/,
+      /www\.construct\.net\/tutorials/,
+      /www\.construct\.net\/en\/tutorials/,
       /googleapis\.com/,
+      /ssl\.gstatic\.com/,
       /fonts\.gstatic\.com/,
       /googletagmanager\.com/,
       /play\.google\.com/,

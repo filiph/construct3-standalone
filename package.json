@@ -1,7 +1,7 @@
 {
-  "name": "umimeto",
-  "version": "1.0.0",
-  "description": "A standalone umimeto.org browser",
+  "name": "construct3-standalone",
+  "version": "1.1.0",
+  "description": "A standalone Construct 3 browser",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
@@ -15,7 +15,7 @@
     "electron-builder": "^24.13.3"
   },
   "build": {
-    "appId": "net.filiph.umimeto",
+    "appId": "net.filiph.construct3",
     "win": {
       "target": "nsis",
       "icon": "build/icon.ico"
