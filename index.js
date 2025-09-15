@@ -7,18 +7,25 @@ function isAllowedUrl(url) {
     // Create URL object to validate format
     const urlObj = new URL(url);
     
-    // Define allowed domains
-    const allowedDomains = [
-      'www.umimeto.org',
-      'www.umimecesky.cz',
-      'www.umimematiku.cz',
-      'fonts.googleapis.com',
-      'fonts.gstatic.com',
-      'www.googletagmanager.com',
+    // Define allowed domains as regular expressions
+    const allowRegexes = [
+      /umimeto\.org/,
+      /umimecesky\.cz/,
+      /umimeanglicky\.cz/,
+      /umimenemecky\.cz/,
+      /umimematiku\.cz/,
+      /umimefakta\.cz/,
+      /umimeinformatiku\.cz/,
+      // Catch-all for future "umimeto" properties
+      /umime\w+\.cz/,
+      /googleapis\.com/,
+      /fonts\.gstatic\.com/,
+      /googletagmanager\.com/,
+      /play\.google\.com/,
     ];
     
-    // Check if the hostname is in our allowed list
-    return allowedDomains.some(domain => urlObj.hostname === domain);
+    // Check if the hostname matches any of our regex patterns
+    return allowRegexes.some(regex => regex.test(urlObj.hostname));
   } catch (e) {
     // URL is not valid format
     return false;
