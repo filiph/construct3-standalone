@@ -1,36 +1,37 @@
 const {app, BrowserWindow, session} = require('electron');
 
 const INITIAL_URL = 'https://editor.construct.net/';
-
-function isAllowedUrl(url) {
-// Define allowed domains as regular expressions
-    const allowRegexes = [
-        /editor\.construct\.net/,
-        /preview\.construct\.net/,
-        /account\.construct\.net/,
-        /downloads\.construct\.net/,
-        /construct-static\.com/,
-        /www\.construct\.net\/en\/make-games\/manuals/,
-        /www\.construct\.net\/tutorials/,
-        /www\.construct\.net\/en\/tutorials/,
-        /googleapis\.com/,
-        /ssl\.gstatic\.com/,
-        /fonts\.gstatic\.com/,
-        /googletagmanager\.com/,
-        /play\.google\.com/,
-    ];
-
-    const urlWithoutProtocol = url.replace(/^https?:\/\//, '');
-    return allowRegexes.some(regex => regex.test(urlWithoutProtocol));
-}
-
-function isAllowedEmbed(url) {
-    return true;
-}
+const NAVIGATE_ALLOW = [
+    /editor\.construct\.net/,
+    /preview\.construct\.net/,
+    /account\.construct\.net/,
+    /downloads\.construct\.net/,
+    /construct-static\.com/,
+    /www\.construct\.net\/en\/make-games\/manuals/,
+    /www\.construct\.net\/tutorials/,
+    /www\.construct\.net\/en\/tutorials/,
+    /googleapis\.com/,
+    /ssl\.gstatic\.com/,
+    /fonts\.gstatic\.com/,
+    /googletagmanager\.com/,
+    /play\.google\.com/,
+];
+const EMBED_ALLOW = [
+    /.*/, // Allow any URL
+];
 
 //
 // ------------ IMPLEMENTATION -----------------
 //
+
+function isAllowedUrl(url) {
+    const urlWithoutProtocol = url.replace(/^https?:\/\//, '');
+    return NAVIGATE_ALLOW.some(regex => regex.test(urlWithoutProtocol));
+}
+
+function isAllowedEmbed(url) {
+    return EMBED_ALLOW.some(regex => regex.test(url));
+}
 
 function createWindow() {
     // Create the browser window.
