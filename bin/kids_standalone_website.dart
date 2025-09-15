@@ -25,7 +25,6 @@ ArgParser buildParser() {
       'input',
       abbr: 'i',
       help: 'Path to the TOML configuration file.',
-      defaultsTo: 'construct3.toml',
     )
     ..addOption(
       'output',
@@ -174,9 +173,18 @@ Future<void> main(List<String> arguments) async {
       verbose = true;
     }
 
-    final String inputPath = results['input'] as String;
+    final String? inputPath = results['input'] as String?;
     final String outputPath = results['output'] as String;
     final String templatePath = results['template'] as String;
+
+    // Check if input file is provided
+    if (inputPath == null || inputPath.isEmpty) {
+      print(
+        'Error: No input file provided. Use --input to specify a TOML configuration file.',
+      );
+      printUsage(argParser);
+      return;
+    }
 
     // Validate input file exists
     final File inputFile = File(inputPath);
