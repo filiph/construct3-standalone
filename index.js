@@ -1,5 +1,33 @@
 const { app, BrowserWindow, session } = require('electron');
 
+const INITIAL_URL = 'https://www.umimematiku.cz/';
+
+function isAllowedUrl(url) {
+  try {
+    // Create URL object to validate format
+    const urlObj = new URL(url);
+    
+    // Define allowed domains
+    const allowedDomains = [
+      'www.umimeto.org',
+      'www.umimecesky.cz',
+      'www.umimematiku.cz',
+      'fonts.googleapis.com',
+      'fonts.gstatic.com',
+    ];
+    
+    // Check if the hostname is in our allowed list
+    return allowedDomains.some(domain => urlObj.hostname === domain);
+  } catch (e) {
+    // URL is not valid format
+    return false;
+  }
+}
+
+//
+// ------------ IMPLEMENTATION -----------------
+//
+
 function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
@@ -12,7 +40,7 @@ function createWindow() {
   });
 
   // Load the website
-  win.loadURL('https://editor.construct.net/');
+  win.loadURL(INITIAL_URL);
 
   // Open the DevTools (optional)
   // win.webContents.openDevTools();
@@ -24,8 +52,7 @@ function createWindow() {
 
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
     const { url } = details;
-    if (url.startsWith('https://editor.construct.net/') ||
-        url.startsWith('https://preview.construct.net/') ) {
+    if (isAllowedUrl(url)) {
       callback({ cancel: false });
     } else {
       callback({ cancel: true });
@@ -34,13 +61,13 @@ function createWindow() {
 
   // Prevent navigation to other domains
   win.webContents.on('will-navigate', (event, url) => {
-    if (!url.startsWith('https://editor.construct.net/')) {
+    if (!isAllowedUrl(url)) {
       event.preventDefault();
     }
   });
 
   win.webContents.on('new-window', (event, url) => {
-    if (!url.startsWith('https://editor.construct.net/')) {
+    if (!isAllowedUrl(url)) {
       event.preventDefault();
     }
   });
