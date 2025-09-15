@@ -14,6 +14,7 @@ function isAllowedUrl(url) {
       'www.umimematiku.cz',
       'fonts.googleapis.com',
       'fonts.gstatic.com',
+      'www.googletagmanager.com',
     ];
     
     // Check if the hostname is in our allowed list
@@ -22,6 +23,10 @@ function isAllowedUrl(url) {
     // URL is not valid format
     return false;
   }
+}
+
+function isAllowedEmbed(url) {
+  return true;
 }
 
 //
@@ -52,7 +57,7 @@ function createWindow() {
 
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
     const { url } = details;
-    if (isAllowedUrl(url)) {
+    if (isAllowedEmbed(url)) {
       callback({ cancel: false });
     } else {
       callback({ cancel: true });
