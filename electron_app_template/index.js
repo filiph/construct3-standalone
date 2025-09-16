@@ -1,4 +1,4 @@
-const {app, BrowserWindow, session} = require('electron');
+const {app, BrowserWindow, session, dialog} = require('electron');
 
 const INITIAL_URL = 'INITIAL_URL_TO_BE_PLACED_HERE';
 const NAVIGATE_ALLOW = [
@@ -19,6 +19,16 @@ function isAllowedUrl(url) {
 
 function isAllowedEmbed(url) {
     return EMBED_ALLOW.some(regex => regex.test(url));
+}
+
+function showDenialDialogue(win, url) {
+    dialog.showMessageBox(win, {
+        type: 'warning',
+        title: 'Blocked',
+        message: 'Navigation to this URL is not allowed, sorry.',
+        detail: `The application blocked navigation to: ${url}`,
+        buttons: ['OK']
+    });
 }
 
 function createWindow() {
@@ -58,6 +68,7 @@ function createWindow() {
         console.log('[will-navigate]', url, 'allowed:', isAllowedUrl(url));
         if (!isAllowedUrl(url)) {
             event.preventDefault();
+            showDenialDialogue(win, url);
         }
     });
 
@@ -66,6 +77,7 @@ function createWindow() {
         console.log('[will-redirect]', url, 'allowed:', isAllowedUrl(url));
         if (!isAllowedUrl(url)) {
             event.preventDefault();
+            showDenialDialogue(win, url);
         }
     });
 
@@ -75,6 +87,9 @@ function createWindow() {
         if (isAllowedUrl(url)) {
             return { action: 'allow' };
         } else {
+            setTimeout(() => {
+                showDenialDialogue(win, url);
+            }, 0);
             return { action: 'deny' };
         }
     });
