@@ -114,6 +114,15 @@ Future<void> updatePackageJson(
 
   // Replace basic info
   content = content.replaceAll(
+    // This must come before 'name_to_be_placed_here', otherwise
+    // the latter part of this placeholder is substituted for the name.
+    'product_name_to_be_placed_here',
+    tomlData['productName'] as String? ??
+        tomlData['name'] as String? ??
+        'Electron App',
+  );
+
+  content = content.replaceAll(
     'name_to_be_placed_here',
     tomlData['name'] as String? ?? 'electron-app',
   );
