@@ -37,7 +37,7 @@ ArgParser buildParser() {
       'template',
       abbr: 't',
       help: 'Path to the electron app template directory.',
-      defaultsTo: 'electron_app',
+      defaultsTo: 'electron_app_template',
     );
 }
 
