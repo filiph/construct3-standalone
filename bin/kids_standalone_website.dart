@@ -90,15 +90,18 @@ Future<void> updateIndexJs(
       .map((pattern) => "  /$pattern/,")
       .join('\n');
   content = content.replaceAll(
-    '    // NAVIGATE_ALLOW_TO_BE_PLACED_HERE',
+    '// NAVIGATE_ALLOW_TO_BE_PLACED_HERE',
     navigateRegexes,
   );
 
   // Replace embed allow list
-  final embedList = (tomlData['whitelist']?['embed'] as List<dynamic>?) ?? [];
+  final embedListExplicit =
+      (tomlData['whitelist']?['embed'] as List<dynamic>?) ?? [];
+  // Automatically prepend navigate list to embed list.
+  final embedList = [...navigateList, ...embedListExplicit];
   final embedRegexes = embedList.map((pattern) => "  /$pattern/,").join('\n');
   content = content.replaceAll(
-    '    // EMBED_ALLOW_TO_BE_PLACED_HERE',
+    '// EMBED_ALLOW_TO_BE_PLACED_HERE',
     embedRegexes,
   );
 
