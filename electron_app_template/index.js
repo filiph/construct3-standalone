@@ -45,7 +45,7 @@ function createWindow() {
 
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         const {url} = details;
-        console.log('[onBeforeRequest]', url, 'allowed:', isAllowedEmbed(url));
+        // console.log('[onBeforeRequest]', url, 'allowed:', isAllowedEmbed(url));
         if (isAllowedEmbed(url)) {
             callback({cancel: false});
         } else {
