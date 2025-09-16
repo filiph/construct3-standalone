@@ -108,6 +108,57 @@ Future<void> updateIndexJs(
   await indexJsFile.writeAsString(content);
 }
 
+/// Copies the Windows icon file from the source to the destination
+/// The icon path in the TOML file is relative to the TOML file location
+/// If the icon path is not provided, use the default icon from the template
+/// If the icon path is provided but the file doesn't exist, show an error
+Future<void> copyWindowsIcon(
+  String inputPath,
+  String outputPath,
+  Map<String, dynamic> tomlData,
+  bool verbose,
+) async {
+  final String? iconPathFromToml =
+      tomlData['build']?['win']?['icon'] as String?;
+
+  // Create the destination directory if it doesn't exist
+  final Directory buildDir = Directory(path.join(outputPath, 'build'));
+  if (!await buildDir.exists()) {
+    await buildDir.create(recursive: true);
+  }
+
+  final File destIconFile = File(path.join(outputPath, 'build', 'icon.ico'));
+
+  // If no icon path is provided in TOML, use the default from template
+  if (iconPathFromToml == null) {
+    if (verbose) {
+      print('[VERBOSE] No Windows icon specified in TOML, using default icon');
+    }
+    // The default icon is already copied as part of the template directory
+    return;
+  }
+
+  // Resolve the icon path relative to the TOML file
+  final String tomlDir = path.dirname(inputPath);
+  final String resolvedIconPath = path.join(tomlDir, iconPathFromToml);
+  final File sourceIconFile = File(resolvedIconPath);
+
+  // Check if the source icon file exists
+  if (!await sourceIconFile.exists()) {
+    print('Error: Windows icon file not found: $resolvedIconPath');
+    throw Exception('Windows icon file not found: $resolvedIconPath');
+  }
+
+  // Copy the icon file to the destination
+  await sourceIconFile.copy(destIconFile.path);
+
+  if (verbose) {
+    print(
+      '[VERBOSE] Copied Windows icon from $resolvedIconPath to ${destIconFile.path}',
+    );
+  }
+}
+
 /// Replaces placeholders in the package.json file with values from the TOML file
 Future<void> updatePackageJson(
   File packageJsonFile,
@@ -149,12 +200,6 @@ Future<void> updatePackageJson(
   content = content.replaceAll(
     'appid_to_be_placed_here',
     tomlData['build']?['appId'] as String? ?? 'com.example.app',
-  );
-
-  // Replace Windows icon path
-  content = content.replaceAll(
-    'windows_icon_path_to_be_placed_here',
-    tomlData['build']?['win']?['icon'] as String? ?? 'build/icon.ico',
   );
 
   // Replace build resources directory
@@ -250,6 +295,17 @@ Future<void> main(List<String> arguments) async {
 
       if (verbose) {
         print('[VERBOSE] Updated index.js with values from TOML file');
+      }
+
+      // Copy Windows icon if specified in TOML
+      try {
+        await copyWindowsIcon(inputPath, outputPath, tomlData, verbose);
+        if (verbose) {
+          print('[VERBOSE] Processed Windows icon');
+        }
+      } catch (e) {
+        print('Error processing Windows icon: $e');
+        return;
       }
 
       // Update package.json

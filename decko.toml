@@ -8,7 +8,7 @@ author = "Filip Hracek"
 appId = "net.filiph.ctdecko"
 
 [build.win]
-icon = "build/icon.ico"
+icon = "icons/decko.ico"
 
 [directories]
 buildResources = "build"

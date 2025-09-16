@@ -19,7 +19,7 @@
     "appId": "appid_to_be_placed_here",
     "win": {
       "target": "nsis",
-      "icon": "windows_icon_path_to_be_placed_here"
+      "icon": "build/icon.ico"
     },
     "directories": {
       "buildResources": "directories_buildResources_to_be_placed_here"

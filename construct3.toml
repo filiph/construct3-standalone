@@ -8,7 +8,7 @@ author = "Filip Hracek"
 appId = "net.filiph.construct3"
 
 [build.win]
-icon = "build/icon.ico"
+icon = "icons/construct3.ico"
 
 [directories]
 buildResources = "build"
