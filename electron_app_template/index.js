@@ -61,10 +61,21 @@ function createWindow() {
         }
     });
 
-    win.webContents.on('new-window', (event, url) => {
-        console.log('[new-window]', url, 'allowed:', isAllowedUrl(url));
+    // Handle redirects
+    win.webContents.on('will-redirect', (event, url) => {
+        console.log('[will-redirect]', url, 'allowed:', isAllowedUrl(url));
         if (!isAllowedUrl(url)) {
             event.preventDefault();
+        }
+    });
+
+    // Modern way to handle new windows (replaces the 'new-window' event)
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        console.log('[setWindowOpenHandler]', url, 'allowed:', isAllowedUrl(url));
+        if (isAllowedUrl(url)) {
+            return { action: 'allow' };
+        } else {
+            return { action: 'deny' };
         }
     });
 }
