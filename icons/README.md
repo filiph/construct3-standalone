@@ -5,3 +5,6 @@ from bitmap images.
 
 For example, I use:
 https://cloudconvert.com/png-to-ico
+and
+https://cloudconvert.com/svg-to-ico
+(and set the output options to 256x256).
