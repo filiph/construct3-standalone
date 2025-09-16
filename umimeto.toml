@@ -1,0 +1,45 @@
+name = "umimeto"
+productName = "Umíme to"
+version = "1.0.0"
+description = "A standalone umimeto.org site"
+author = "Filip Hracek"
+
+[build]
+appId = "net.filiph.umimeto"
+
+[build.win]
+icon = "icons/umimeto.ico"
+
+[directories]
+buildResources = "build"
+
+[start]
+url = "https://decko.ceskatelevize.cz/"
+
+[whitelist]
+# List of allowed URLs (as regular expressions) that the user can navigate to.
+# (They can change the page to such a URL or open a new window with it.)
+navigate = [
+    '(www\.)?umimeto\.org',
+    '(www\.)?umimecesky\.cz',
+    '(www\.)?umimeanglicky\.cz',
+    '(www\.)?umimenemecky\.cz',
+    '(www\.)?umimematiku\.cz',
+    '(www\.)?umimefakta\.cz',
+    '(www\.)?umimeinformatiku\.cz',
+    # Catch-all for future "umimeto" properties
+    '(www\.)?umime\w+\.cz',
+    '.*googleapis\.com',
+    'fonts\.gstatic\.com',
+    'googletagmanager\.com',
+    'play\.google\.com',
+]
+
+# List of URLs (as regular expressions) that the page can access.
+# You can change this list to contain '.*' if you want to allow any embed.
+# Note: This list is implicitly appended by the `navigate` list above
+# since it would take little sense to disallow fetching a page that is being
+# opened.
+embed = [
+    '.*',
+]
