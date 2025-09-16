@@ -1,5 +1,6 @@
 {
   "name": "name_to_be_placed_here",
+  "productName": "product_name_to_be_placed_here",
   "version": "version_to_be_placed_here",
   "description": "description_to_be_placed_here",
   "main": "index.js",
