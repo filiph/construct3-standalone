@@ -45,6 +45,7 @@ function createWindow() {
 
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         const {url} = details;
+        console.log('[onBeforeRequest]', url, 'allowed:', isAllowedEmbed(url));
         if (isAllowedEmbed(url)) {
             callback({cancel: false});
         } else {
@@ -54,12 +55,14 @@ function createWindow() {
 
     // Prevent navigation to other domains
     win.webContents.on('will-navigate', (event, url) => {
+        console.log('[will-navigate]', url, 'allowed:', isAllowedUrl(url));
         if (!isAllowedUrl(url)) {
             event.preventDefault();
         }
     });
 
     win.webContents.on('new-window', (event, url) => {
+        console.log('[new-window]', url, 'allowed:', isAllowedUrl(url));
         if (!isAllowedUrl(url)) {
             event.preventDefault();
         }
