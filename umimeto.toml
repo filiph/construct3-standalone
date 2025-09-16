@@ -14,7 +14,7 @@ icon = "icons/umimeto.ico"
 buildResources = "build"
 
 [start]
-url = "https://decko.ceskatelevize.cz/"
+url = "https://www.umimeto.org/"
 
 [whitelist]
 # List of allowed URLs (as regular expressions) that the user can navigate to.
